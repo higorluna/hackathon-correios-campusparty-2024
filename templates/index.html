@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Produtos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF8DC;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Estilo do cabeçalho da página */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #005f9e; /* Cor azul utilizada no projeto */
+            border-bottom: 2px solid #ccc;
+        }
+
+        /* Estilo para o logo dos Correios */
+        .logo {
+            height: 50px;
+        }
+
+        h1 {
+            margin: 0;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo da tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Cabeçalho 'Atenção' com cor vermelha e negrito */
+        th.atencao {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Estilo do formulário */
+        form {
+            margin: 20px 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            background-color: #397d39;
+        }
+
+        /* Margens semelhantes às páginas anteriores */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo da seção de resultado */
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Busca de NCM</h1>
+        <img src="{{ url_for('static', filename='logoCorreios.png') }}" alt="Logo Correios" class="logo">
+    </header>
+
+    <div class="container">
+        <h3>O NCM é um código internacional que representa um produto</h3>
+        <h4>Exemplo: use a palavra quadro se você está enviando um quadro. Seja claro e simples uma palavra irá resolver.</h4>
+
+        <form id="form-busca" action="/produtos" method="GET">
+            <label for="descricao">Descrição do Produto:</label>
+            <input type="text" id="descricao" name="descricao" placeholder="Digite a descrição...">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <h2>Resultado da Busca:</h2>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        // Função para exibir o resultado da busca sem recarregar a página
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o recarregamento da página
+
+            const descricao = document.querySelector('#descricao').value;
+            const url = `/produtos?descricao=${encodeURIComponent(descricao)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    let resultadoDiv = document.querySelector('#resultado');
+                    resultadoDiv.innerHTML = ''; // Limpa resultados anteriores
+
+                    if (data.erro) {
+                        resultadoDiv.innerHTML = `<p>${data.erro}</p>`;
+                    } else {
+                        let tabela = '<table><tr><th>NCM</th><th>Descrição</th><th class="atencao">Atenção</th></tr>';
+                        data.forEach(produto => {
+                            tabela += `<tr><td>${produto.NCM}</td><td>${produto.Descricao}</td><td>${produto.Atencao}</td></tr>`;
+                        });
+                        tabela += '</table>';
+                        resultadoDiv.innerHTML = tabela;
+                    }
+                })
+                .catch(err => console.error('Erro:', err));
+        });
+    </script>
+</body>
+</html>

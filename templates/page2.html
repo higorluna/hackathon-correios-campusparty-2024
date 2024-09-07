@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preenchimento da Declaração Alfandegária</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF8DC;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative; /* Adiciona posição relativa para o botão "Continuar" */
+        }
+        h1 {
+            color: #005f9e;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+        .cta-button:active {
+            background-color: #397d39;
+        }
+        .link-button {
+            display: block;
+            padding: 10px 20px;
+            background-color: #e9f1fb;
+            color: #005f9e;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .link-button:hover {
+            background-color: #d1e3f1;
+            transform: translateY(-2px);
+        }
+        .link-button:active {
+            background-color: #b0c8e2;
+        }
+        .continue-button {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #FFD700; /* Cor amarela */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(240, 173, 78, 0.4);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+        .continue-button:hover {
+            background-color: #ec971f;
+            transform: translateY(-3px);
+        }
+        .continue-button:active {
+            background-color: #d9534f;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        ul li {
+            background-color: transparent;
+            margin: 5px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        .form-list {
+            margin-bottom: 60px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #005f9e;
+            color: white;
+            margin-top: 40px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Preenchimento da Declaração Alfandegária</h1>
+
+        <p><a href="http://127.0.0.1:5000/" class="cta-button" target="_blank">Obtenha o NCM do produto clicando aqui</a></p>
+
+        <p>Você deve preencher uma Declaração de Conteúdo ou Declaração Alfandegária para envios internacionais, especificando:</p>
+        <ul>
+            <li>Você vai precisar do NCM logo acima tem um botão para a obtenção do mesmo.</li>
+            <li>Descrição detalhada dos itens que está enviando.</li>
+            <li>Quantidade e valor de cada item.</li>
+            <li>Finalidade do envio (comercial ou não comercial).</li>        
+        </ul>
+        <p>Dependendo do valor e do tipo de item, você precisará preencher um dos seguintes formulários:</p>
+        <ul class="form-list">
+            <li><a href="https://www.correios.com.br/enviar/encomendas/arquivo/internacional/formulario-cn22.pdf" class="link-button" target="_blank">CN22: Para envios até USD 50.00. Baixe o documento aqui</a></li>
+            <li><a href="https://www.ctt.pt/application/themes/pdfs/particulares/correio-e-encomendas/CN23_Declaracaoo%20para%20a%20Alfandega_105x148mm_Dez%202017_.pdf?srsltid=AfmBOorEjf2iac_yG1Xsj6qIr1PVdFW8BWqSdq8DXO0X_xKsbOqEzqB9" class="link-button" target="_blank">CN23: Para envios acima de USD 50.00. Baixe o documento aqui</a></li>
+            <li><a href="https://www.correios.com.br/enviar/encomendas/arquivo/internacional/copy_of_fatura-proforma.ods" class="link-button" target="_blank">Proforma invoice</a></li>
+            <li><a href="https://www.correios.com.br/enviar/encomendas/arquivo/internacional/copy_of_formulario-de-postagem-awb.ods" class="link-button" target="_blank">AWB, Folha Suplementar e Commercial Invoice</a></li>
+        </ul>
+
+        <a href="page3.html" class="continue-button" target="_blank">Continuar</a>
+    </div>
+
+    <footer>
+        <p>Saiba os termos e condições para os envios internacionais <a href="https://www.correios.com.br/enviar/encomendas/arquivo/internacional/termo-de-condicoes-gerais-de-prestacao-dos-servicos-internacionais-de-exportacao.pdf" target="_blank">correios.com.br</a>.</p>
+    </footer>
+
+</body>
+</html>
